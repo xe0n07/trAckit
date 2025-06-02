@@ -200,3 +200,4 @@ public class UserDAO {
     }
 }
 // 2025-06-02
+// Add user DAO interface
