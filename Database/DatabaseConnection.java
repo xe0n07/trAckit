@@ -29,3 +29,4 @@ public class DatabaseConnection {
     }
 }
 // 2025-06-04
+// Setup database connection class
