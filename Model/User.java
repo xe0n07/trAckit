@@ -29,4 +29,4 @@ public class User {
     public String getCompanyName() { return companyName; }
     public String getEmail() { return email; }
     public String getRole() { return role; }
-}
+}// 2025-06-06
