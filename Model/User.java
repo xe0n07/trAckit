@@ -30,3 +30,4 @@ public class User {
     public String getEmail() { return email; }
     public String getRole() { return role; }
 }// 2025-06-06
+// Create User model
