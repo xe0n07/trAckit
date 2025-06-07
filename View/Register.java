@@ -169,3 +169,4 @@ public class Register extends JFrame {
         new Login().setVisible(true);
     }
 }// 2025-06-07
+// Implement Register UI logic
