@@ -5,6 +5,7 @@ import Model.User;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.prefs.Preferences;
 
 public class Login extends JFrame {
     // Swing components matching Login.form
@@ -20,6 +21,7 @@ public class Login extends JFrame {
     private JLabel notRegisteredLabel;
     private JLabel iconLabel;
     private UserDAO userDAO;
+    private Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
 
     public Login() {
         userDAO = new UserDAO();
@@ -121,6 +123,13 @@ public class Login extends JFrame {
         registerButton.addActionListener(e -> openRegister());
         mainPanel.add(registerButton);
 
+        // Load remembered username
+        String rememberedUser = prefs.get("rememberedUsername", "");
+        if (!rememberedUser.isEmpty()) {
+            usernameField.setText(rememberedUser);
+            rememberMeCheckbox.setSelected(true);
+        }
+
         setContentPane(mainPanel);
     }
 
@@ -138,7 +147,15 @@ public class Login extends JFrame {
             JOptionPane.showMessageDialog(this,
                 "Welcome, " + user.getFullName() + "!",
                 "Login Successful", JOptionPane.INFORMATION_MESSAGE);
-            // Open main application window here
+            new dashboard().setVisible(true); // Open dashboard
+            this.dispose();
+
+            // Remember username if checkbox is selected
+            if (rememberMeCheckbox.isSelected()) {
+                prefs.put("rememberedUsername", username);
+            } else {
+                prefs.remove("rememberedUsername");
+            }
         } else {
             showError("Invalid username or password");
         }
