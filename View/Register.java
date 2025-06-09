@@ -162,4 +162,10 @@ public class Register extends JFrame {
         JOptionPane.showMessageDialog(this, 
             message, "Error", JOptionPane.ERROR_MESSAGE);
     }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        new Login().setVisible(true);
+    }
 }
