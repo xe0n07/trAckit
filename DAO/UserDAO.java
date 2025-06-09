@@ -122,4 +122,93 @@ public class UserDAO {
             return false;
         }
     }
+
+    // --- PRODUCT OPERATIONS ---
+
+    // Add a new product
+    public boolean addProduct(String name, String manufacturer, double cost, String supplier) {
+        String sql = "INSERT INTO inventory_management_system (name, manufacturer, cost, supplier) VALUES (?, ?, ?, ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, name);
+            pstmt.setString(2, manufacturer);
+            pstmt.setDouble(3, cost);
+            pstmt.setString(4, supplier);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // Update an existing product by name
+    public boolean updateProduct(String name, String manufacturer, double cost, String supplier) {
+        String sql = "UPDATE inventory_management_system SET manufacturer=?, cost=?, supplier=? WHERE name=?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, manufacturer);
+            pstmt.setDouble(2, cost);
+            pstmt.setString(3, supplier);
+            pstmt.setString(4, name);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // Get all products
+    public ResultSet getAllProducts() {
+        String sql = "SELECT * FROM inventory_management_system";
+        try {
+            Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            return pstmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    // --- ORDER OPERATIONS ---
+
+    // Add or update an order (by order_id)
+    public boolean addOrUpdateOrder(int orderId, String product, String category, String salesChannel, String instruction,
+                                    int items, String status, String storeName, String stockAdjustment, int qty) {
+        String sql = "INSERT INTO inventory_management_system (order_id, product, category, sales_channel, instruction, items, status, store_name, stock_adjustment, qty) " +
+                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) " +
+                     "ON DUPLICATE KEY UPDATE product=VALUES(product), category=VALUES(category), sales_channel=VALUES(sales_channel), " +
+                     "instruction=VALUES(instruction), items=VALUES(items), status=VALUES(status), store_name=VALUES(store_name), " +
+                     "stock_adjustment=VALUES(stock_adjustment), qty=VALUES(qty)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, orderId);
+            pstmt.setString(2, product);
+            pstmt.setString(3, category);
+            pstmt.setString(4, salesChannel);
+            pstmt.setString(5, instruction);
+            pstmt.setInt(6, items);
+            pstmt.setString(7, status);
+            pstmt.setString(8, storeName);
+            pstmt.setString(9, stockAdjustment);
+            pstmt.setInt(10, qty);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // Get all orders
+    public ResultSet getAllOrders() {
+        String sql = "SELECT * FROM inventory_management_system WHERE order_id IS NOT NULL";
+        try {
+            Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            return pstmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
