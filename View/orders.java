@@ -88,4 +88,4 @@ public class orders extends JPanel {
     private void saveOrdersToDatabase() {
         JOptionPane.showMessageDialog(this, "Orders saved to database.", "Success", JOptionPane.INFORMATION_MESSAGE);
     }
-}
+}   
