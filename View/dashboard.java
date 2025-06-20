@@ -15,6 +15,7 @@ public class dashboard extends javax.swing.JFrame {
      */
     public dashboard() {
         initComponents();
+        setLocationRelativeTo(null); //Centers to the window
     }
 
     /**
@@ -28,12 +29,16 @@ public class dashboard extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        jPanel1 = new javax.swing.JPanel();
+        MenuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
+        jMenu8 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -41,32 +46,66 @@ public class dashboard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1160, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 607, Short.MAX_VALUE)
+        );
+
+        MenuBar.setBorder(null);
+        MenuBar.setBorderPainted(false);
+        MenuBar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuBar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        MenuBar.setRequestFocusEnabled(false);
+
+        jMenu1.setIcon(new javax.swing.ImageIcon("D:\\Trackit_Final\\src\\main\\java\\resources\\Images\\Menu_Icon.jpeg")); // NOI18N
         jMenu1.setText("Dashboard");
-        jMenuBar1.add(jMenu1);
+        MenuBar.add(jMenu1);
 
         jMenu2.setText("Products");
-        jMenuBar1.add(jMenu2);
+        MenuBar.add(jMenu2);
 
+        jMenu3.setIcon(new javax.swing.ImageIcon("D:\\Trackit_Final\\src\\main\\java\\resources\\Images\\order.png")); // NOI18N
         jMenu3.setText("Orders");
-        jMenuBar1.add(jMenu3);
+        MenuBar.add(jMenu3);
 
+        jMenu4.setIcon(new javax.swing.ImageIcon("D:\\Trackit_Final\\src\\main\\java\\resources\\Images\\sales.png")); // NOI18N
         jMenu4.setText("Sales");
-        jMenuBar1.add(jMenu4);
+        MenuBar.add(jMenu4);
 
+        jMenu5.setIcon(new javax.swing.ImageIcon("D:\\Trackit_Final\\src\\main\\java\\resources\\Images\\in-stock.png")); // NOI18N
         jMenu5.setText("Stocks");
-        jMenuBar1.add(jMenu5);
+        MenuBar.add(jMenu5);
 
-        setJMenuBar(jMenuBar1);
+        jMenu6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        MenuBar.add(jMenu6);
+
+        jMenu7.setIcon(new javax.swing.ImageIcon("D:\\Trackit_Final\\src\\main\\java\\resources\\Images\\bell.jpeg")); // NOI18N
+        MenuBar.add(jMenu7);
+
+        jMenu8.setIcon(new javax.swing.ImageIcon("D:\\Trackit_Final\\src\\main\\java\\resources\\Images\\logout.png")); // NOI18N
+        MenuBar.add(jMenu8);
+
+        setJMenuBar(MenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 694, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 347, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -100,21 +139,23 @@ public class dashboard extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new dashboard().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new dashboard().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar MenuBar;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
