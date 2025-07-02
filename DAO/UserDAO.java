@@ -112,6 +112,20 @@ public class UserDAO {
     // --- PRODUCT OPERATIONS ---
 
     // Add a new product
+       public boolean addProduct(String name, String manufacturer, double cost, String supplier) {
+        String sql = "INSERT INTO inventory_management_system (name, manufacturer, cost, supplier) VALUES (?, ?, ?, ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, name);
+            pstmt.setString(2, manufacturer);
+            pstmt.setDouble(3, cost);
+            pstmt.setString(4, supplier);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
  
 
     // Update an existing product by name
