@@ -107,21 +107,7 @@ public class UserDAO {
         }
     }
     // Check if email exists
-    public boolean emailExists(String email) {
-        String sql = "SELECT email FROM users WHERE email = ?";
-        
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
-            pstmt.setString(1, email);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                return rs.next();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+   
 
     // --- PRODUCT OPERATIONS ---
 
